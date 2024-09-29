@@ -26,13 +26,13 @@ function App() {
 
   const handleEditTask = (todoList) => {
     setTask(tasks[todoList].text);
-    setEditingIndex(todoList);
+    setEditingList(todoList);
   };
 
   const handleUpdateTask = () => {
     if (!task.trim() || editingIndex === null) return;
     const updatedTasks = tasks.map((singleTask, todoList) =>
-      todoList === editingIndex ? { ...singleTask, text: task } : singleTask
+      todoList === editingList ? { ...singleTask, text: task } : singleTask
     );
     setTasks(updatedTasks);
     setTask('');
@@ -59,7 +59,7 @@ function App() {
           label="Add Task"
           variant="outlined"
           value={task}
-          onChange={(e) => setTask(e.target.value)}
+          onChange={(event) => setTask(event.target.value)}
         />
         <IconButton onClick={editingIndex !== null ? handleUpdateTask : handleAddTask}>
           <AddIcon />
